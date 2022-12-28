@@ -34,4 +34,15 @@ public class DonationService {
         donationRepository.deleteById(id);
     }
 
+    public long countAllDonations() {
+        return donationRepository.count();
+    }
+
+    public long countAllBags() {
+        if (donationRepository.count() > 0) {
+            return donationRepository.getNumberOfBags();
+        }
+        return 0;
+    }
+
 }
