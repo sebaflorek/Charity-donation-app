@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class RegionService {
+public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     public void save(Category category) {
