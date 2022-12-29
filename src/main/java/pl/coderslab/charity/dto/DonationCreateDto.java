@@ -35,11 +35,15 @@ public class DonationCreateDto {
     private String zipCode;
 
     @NotEmpty
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Pattern(regexp = "(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)", message = "{invalid.phoneNumber.phoneNumber-pattern}")
+    private String phoneNumber;
+
+    @NotEmpty
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate pickUpDate;
 
     @NotEmpty
-    @DateTimeFormat(pattern = "hh:mm:ss")
+    @DateTimeFormat(pattern = "hh:mm")
     private LocalTime pickUpTime;
 
     @Size(max = 600, message = "{invalid.pickUpComment.pickUpComment-length}")

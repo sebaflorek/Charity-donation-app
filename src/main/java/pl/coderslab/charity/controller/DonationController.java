@@ -39,7 +39,7 @@ public class DonationController {
 
     @PostMapping("/form")
     @ResponseBody
-    public String donationAdd() {
-        return "Sukces";
+    public String donationAdd(DonationCreateDto donationCreateDto) {
+        return donationCreateDto.toString();
     }
 }
