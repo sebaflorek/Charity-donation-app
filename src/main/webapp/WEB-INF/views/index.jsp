@@ -94,54 +94,29 @@
         <ul class="help--slides-items">
             <c:forEach varStatus="loop" step="2" var="institution" items="${institutionList}">
                 <li>
-                        <%--                    <c:if test="${not empty institutionList[loop.index]}">--%>
+                        <%--<c:if test="${not empty institutionList[loop.index]}">--%>
                     <div class="col">
                         <div class="title">Fundacja "${institutionList[loop.index].name}"</div>
                         <div class="subtitle">Cel i misja: ${institutionList[loop.index].description}</div>
                     </div>
-                        <%--                    </c:if>--%>
+                        <%--</c:if>--%>
 
-                        <%--                    <c:if test="${not empty institutionList[loop.index+1]}">--%>
-                    <div class="col">
-                        <div class="title">Fundacja "${institutionList[loop.index+1].name}"</div>
-                        <div class="subtitle">Cel i misja: ${institutionList[loop.index+1].description}</div>
-                    </div>
-                        <%--                    </c:if>--%>
+                    <c:if test="${not empty institutionList[loop.index+1]}">
+                        <div class="col">
+                            <div class="title">Fundacja "${institutionList[loop.index+1].name}"</div>
+                            <div class="subtitle">Cel i misja: ${institutionList[loop.index+1].description}</div>
+                        </div>
+                    </c:if>
 
-                        <%--                    <c:if test="${empty institutionList[loop.index+1]}">--%>
-                        <%--                        <div class="col">--%>
-                        <%--                            <div class="title">&nbsp</div>--%>
-                        <%--                            <div class="subtitle">&nbsp</div>--%>
-                        <%--                        </div>--%>
-                        <%--                    </c:if>--%>
+                    <c:if test="${empty institutionList[loop.index+1]}">
+                        <div class="col">
+                            <div class="title">&nbsp</div>
+                            <div class="subtitle">&nbsp</div>
+                        </div>
+                    </c:if>
                 </li>
             </c:forEach>
         </ul>
-
-        <%--        <ul class="help--slides-items">--%>
-        <%--            <li>--%>
-        <%--                <div class="col">--%>
-        <%--                    <div class="title">Fundacja "Dbam o Zdrowie"</div>--%>
-        <%--                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>--%>
-        <%--                </div>--%>
-
-        <%--                <div class="col">--%>
-        <%--                    <div class="title">Fundacja "A kogo"</div>--%>
-        <%--                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>--%>
-        <%--                </div>--%>
-        <%--            </li>--%>
-
-        <%--            <li>--%>
-        <%--                <div class="col">--%>
-        <%--                    <div class="title">Fundacja “Dla dzieci"</div>--%>
-        <%--                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>--%>
-        <%--                </div>--%>
-        <%--                <div class="col">--%>
-        <%--                    <div class="title">Fundacja “Bez domu”</div>--%>
-        <%--                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>--%>
-        <%--                </div>--%>
-        <%--            </li>--%>
-        <%--        </ul>--%>
     </div>
 </section>
 

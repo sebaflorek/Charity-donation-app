@@ -6,8 +6,6 @@ import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Data
@@ -40,11 +38,11 @@ public class DonationCreateDto {
 
     @NotEmpty
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate pickUpDate;
+    private String pickUpDate;
 
     @NotEmpty
     @DateTimeFormat(pattern = "hh:mm")
-    private LocalTime pickUpTime;
+    private String pickUpTime;
 
     @Size(max = 600, message = "{invalid.pickUpComment.pickUpComment-length}")
     private String pickUpComment;
