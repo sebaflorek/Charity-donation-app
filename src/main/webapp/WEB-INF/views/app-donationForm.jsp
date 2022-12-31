@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-<header class="header--main-page">
+<header class="header--form-page">
     <%@include file="fragments/header.jsp" %>
     <div class="slogan container container--90">
         <div class="slogan--item">
@@ -46,7 +46,7 @@
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
-            <h3>Ważne!</h3>
+            <h3 id="important">Ważne!</h3>
             <p data-step="1" class="active">
                 Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
                 wiedzieć komu najlepiej je przekazać.
@@ -62,6 +62,16 @@
             <p data-step="4">Podaj adres oraz termin odbioru rzeczy.</p>
         </div>
     </div>
+    <c:if test="${hasErrors}">
+    <div class="form--steps-errorInstructions">
+        <div class="form--steps-container">
+            <h3>Uwaga!</h3>
+            <p class="active">
+                Formularz niewysłany! Popraw wskazane pozycje i wyślij ponownie!
+            </p>
+        </div>
+    </div>
+    </c:if>
 
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
@@ -77,10 +87,14 @@
                             <form:checkbox path="categories" value="${category}"/>
                             <span class="checkbox"></span>
                             <span class="description">${category.name}</span>
-                            <form:errors path="categories" cssClass="errorMsg"/>
                         </label>
                     </div>
                 </c:forEach>
+                <div class="form-group form-group--inline">
+                    <label>
+                        <form:errors path="categories" cssClass="errorMsg"/>
+                    </label>
+                </div>
 
                     <%--                <div>--%>
                     <%--                    <label>--%>
@@ -123,13 +137,17 @@
                             <form:radiobutton path="institution" value="${institution}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                                      <div class="title">Fundacja ${institution.name}</div>
+                                      <div class="title">Fundacja "${institution.name}"</div>
                                       <div class="subtitle">Cel i misja: ${institution.description}</div>
                             </span>
-                            <form:errors path="institution" cssClass="errorMsg"/>
                         </label>
                     </div>
                 </c:forEach>
+                <div class="form-group form-group--inline">
+                    <label>
+                        <form:errors path="institution" cssClass="errorMsg"/>
+                    </label>
+                </div>
 
                     <%--                <div>--%>
                     <%--                    <label>--%>
@@ -156,32 +174,32 @@
                             <label>
                                 Ulica
                                 <form:input path="street"/>
-                                <form:errors path="street" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="street" cssClass="errorMsg"/></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Miasto
                                 <form:input path="city"/>
-                                <form:errors path="city" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="city" cssClass="errorMsg"/></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Kod pocztowy
                                 <form:input path="zipCode" placeholder="xx-xxx"/>
-                                <form:errors path="zipCode" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="zipCode" cssClass="errorMsg"/></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Numer telefonu
                                 <form:input path="phoneNumber"/>
-                                <form:errors path="phoneNumber" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="phoneNumber" cssClass="errorMsg"/></div>
                         </div>
                     </div>
 
@@ -191,24 +209,24 @@
                             <label>
                                 Data
                                 <form:input path="pickUpDate" type="date"/>
-                                <form:errors path="pickUpDate" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="pickUpDate" cssClass="errorMsg"/></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Godzina
                                 <form:input path="pickUpTime" type="time"/>
-                                <form:errors path="pickUpTime" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="pickUpTime" cssClass="errorMsg"/></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
                                 <form:textarea path="pickUpComment" placeholder="Max 600 znaków"/>
-                                <form:errors path="pickUpComment" cssClass="errorMsg"/>
                             </label>
+                            <div class="errorDiv"><form:errors path="pickUpComment" cssClass="errorMsg"/></div>
                         </div>
                     </div>
                 </div>

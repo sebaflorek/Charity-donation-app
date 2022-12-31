@@ -15,11 +15,11 @@ VALUES ('Dbam o Zdrowie', 'Pomoc dzieciom z ubogich rodzin'),
        ('Bez domu', 'Pomoc dla osób nie posiadających miejsca zamieszkania')
 ;
 
-INSERT INTO donations (city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id)
-VALUES ('Kielce', 'Parking przy Castoramie', now() + interval 2 day, now() + interval 2 day, 1, 'Wrzosowa', '25-200', 1),
-       ('Kielce', 'Parking przy Lidlu', now() + interval 4 day, now() + interval 4 day, 2, 'Popiełuszki', '25-200', 2),
-       ('Warszawa', 'Parking przy metrze Wilanowska', now() + interval 6 day, now() + interval 6 day, 3, 'Płocka', '00-100', 3),
-       ('Warszawa', 'Parking przy metrze Płocka ', now() + interval 8 day, now() + interval 2 day, 4, 'Wilanowska', '00-200', 4)
+INSERT INTO donations (city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, phone_number)
+VALUES ('Kielce', 'Parking przy Castoramie', now() + interval 2 day, now() + interval 2 day, 1, 'Wrzosowa', '25-200', 1, '+48 111 111 111'),
+       ('Kielce', 'Parking przy Lidlu', now() + interval 4 day, now() + interval 4 day, 2, 'Popiełuszki', '25-200', 2, '+48 111 111 222'),
+       ('Warszawa', 'Parking przy metrze Wilanowska', now() + interval 6 day, now() + interval 6 day, 3, 'Płocka', '00-100', 3, '+48 111 111 333'),
+       ('Warszawa', 'Parking przy metrze Płocka ', now() + interval 8 day, now() + interval 2 day, 4, 'Wilanowska', '00-200', 4, '+48 111 111 444')
 ;
 
 INSERT INTO donations_categories

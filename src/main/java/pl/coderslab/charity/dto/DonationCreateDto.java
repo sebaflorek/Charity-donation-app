@@ -6,15 +6,16 @@ import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class DonationCreateDto {
 
     @Min(1)
-    private Integer quantity;
+    private String quantity;
 
-    @NotNull(message = "{invalid.category.category-notnull}")
+    @NotEmpty(message = "{invalid.category.category-notnull}")
     private List<Category> categories;
 
     @NotNull(message = "{invalid.institution.institution-notnull}")
@@ -36,12 +37,13 @@ public class DonationCreateDto {
     @Pattern(regexp = "(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)", message = "{invalid.phoneNumber.phoneNumber-pattern}")
     private String phoneNumber;
 
-    @NotEmpty
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private String pickUpDate;
+    @NotNull
+    @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate pickUpDate;
 
     @NotEmpty
-    @DateTimeFormat(pattern = "hh:mm")
+    @Pattern(regexp = "\\d{2}:\\d{2}", message = "{invalid.pickUpTime.pickUpTime-pattern}")
     private String pickUpTime;
 
     @Size(max = 600, message = "{invalid.pickUpComment.pickUpComment-length}")

@@ -35,6 +35,7 @@ public class Donation {
 
     private String zipCode;
 
+    @Column(unique = true)
     private String phoneNumber;
 
     private LocalDate pickUpDate;
