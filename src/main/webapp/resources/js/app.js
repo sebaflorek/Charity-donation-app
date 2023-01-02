@@ -164,6 +164,59 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+
+      // Bag summary description
+      let bagsNum = document.querySelector("#quantity").value;
+      let bagsDescription;
+      if (bagsNum == 1) {
+        bagsDescription = bagsNum + " worek zawierający ";
+      } else if (bagsNum > 1 && bagsNum < 5) {
+        bagsDescription = bagsNum + " worki zawierające ";
+      } else if (bagsNum > 4) {
+        bagsDescription = bagsNum + " worków zawierających ";
+      } else {
+        bagsDescription = "0 worków zawierających";
+      }
+
+      let checkedCategories = document.querySelectorAll("input[name='categories']:checked ~ span.description");
+
+      for (let i = 0; i < checkedCategories.length; i++) {
+        let separator = ", ";
+        if (i === checkedCategories.length - 2) {
+          separator = " i ";
+        } else if (i === checkedCategories.length - 1) {
+          separator = "";
+        }
+        debugger;
+        console.log("test")
+        bagsDescription += checkedCategories[i].innerText + separator;
+      }
+
+      // Institution summary description
+      let inst = document.querySelector("input[name='institution']:checked ~ span.description > div.title")
+      let instDescription = "Nie wybrano fundacji";
+      if (inst !== null) {
+        instDescription = `${inst.innerText.replaceAll("Fundacja", "Dla fundacji")}`;
+      }
+
+      // Contact summary
+
+      // Summary
+      document.querySelector("#bagsSummary").innerText = bagsDescription;
+      document.querySelector("#institutionSummary").innerText = instDescription;
+      document.querySelector("li#street").innerText = document.querySelector("#street").value;
+      document.querySelector("li#city").innerText = document.querySelector("#city").value;
+      document.querySelector("li#zipCode").innerText = document.querySelector("#zipCode").value;
+      document.querySelector("li#phone").innerText = document.querySelector("#phoneNumber").value;
+      document.querySelector("li#date").innerText = document.querySelector("#pickUpDate").value;
+      document.querySelector("li#time").innerText = document.querySelector("#pickUpTime").value;
+      let comment = document.querySelector("#pickUpComment").value;
+      if (comment.trim().length === 0) {
+        document.querySelector("li#comment").innerText = "Brak uwag";
+      } else {
+        document.querySelector("li#comment").innerText = "Uwagi: " + document.querySelector("#pickUpComment").value;
+      }
+
     }
 
   }

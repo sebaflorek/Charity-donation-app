@@ -247,12 +247,12 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text">4 worki ubrań w dobrym stanie dla dzieci</span>
+                                <span class="summary--text" id="bagsSummary">Nic nie oddajesz</span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span>
+                                <span class="summary--text" id="institutionSummary">Nie wybrano fundacji</span>
                             </li>
                         </ul>
                     </div>
@@ -261,19 +261,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="street">Prosta 51</li>
+                                <li id="city">Warszawa</li>
+                                <li id="zipCode">99-098</li>
+                                <li id="phone">123 456 789</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="date">13/12/2018</li>
+                                <li id="time">15:40</li>
+                                <li id="comment">Brak uwag</li>
                             </ul>
                         </div>
                     </div>

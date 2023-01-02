@@ -43,7 +43,7 @@ public class DonationCreateDto {
     private LocalDate pickUpDate;
 
     @NotEmpty
-    @Pattern(regexp = "\\d{2}:\\d{2}", message = "{invalid.pickUpTime.pickUpTime-pattern}")
+    @Pattern(regexp = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", message = "{invalid.pickUpTime.pickUpTime-pattern}")
     private String pickUpTime;
 
     @Size(max = 600, message = "{invalid.pickUpComment.pickUpComment-length}")
