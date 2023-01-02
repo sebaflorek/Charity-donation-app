@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
       } else if (bagsNum > 4) {
         bagsDescription = bagsNum + " worków zawierających ";
       } else {
-        bagsDescription = "0 worków zawierających";
+        bagsDescription = "0 worków zawierających ";
       }
 
       let checkedCategories = document.querySelectorAll("input[name='categories']:checked ~ span.description");

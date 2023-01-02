@@ -1,3 +1,18 @@
+INSERT INTO roles (id, name)
+VALUES (null, 'ROLE_USER'),
+       (null, 'ROLE_ADMIN')
+;
+
+INSERT INTO users (username, email, password, enabled, name, surname)
+VALUES ('user', 'user@mr.pl', '$2a$10$vATBTwreQmUc4NmmQCjr8.q3hyIYNx582a5ukVflpx0tOdoL7EvUq', 1, 'Jan', 'Kowalski'),
+       ('admin', 'admin@mr.pl', '$2a$10$vATBTwreQmUc4NmmQCjr8.q3hyIYNx582a5ukVflpx0tOdoL7EvUq', 1, 'Anna', 'Kowalska')
+;
+
+INSERT INTO users_roles (user_id, role_id)
+VALUES (1, 1),
+       (2, 2)
+;
+
 INSERT INTO categories (name)
 VALUES ('ubrania'),
        ('książki'),

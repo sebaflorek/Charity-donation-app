@@ -13,7 +13,7 @@
     <ul class="nav--actions">
         <sec:authorize access="!isAuthenticated()">
             <li><a href='<c:url value="/login"/>' class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href='<c:url value="/"/>' class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href='<c:url value="/register"/>' class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
             <li class="logged-user">

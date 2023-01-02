@@ -18,15 +18,15 @@ public class SecurityConfig {
                 .antMatchers("/",
                         "/register",
                         "/login").permitAll()
-//                .antMatchers("/app/**").hasRole("USER")
+                .antMatchers("/app/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin().defaultSuccessUrl("/")
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
     }
 
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

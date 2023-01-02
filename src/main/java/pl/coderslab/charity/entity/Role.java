@@ -5,10 +5,10 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = Category.TABLE_NAME)
+@Table(name = Role.TABLE_NAME)
 @Data
-public class Category {
-    public static final String TABLE_NAME = "categories";
+public class Role {
+    public static final String TABLE_NAME = "roles";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

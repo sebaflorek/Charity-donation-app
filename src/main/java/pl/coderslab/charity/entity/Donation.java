@@ -15,7 +15,7 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private Integer quantity;
 
@@ -35,7 +35,6 @@ public class Donation {
 
     private String zipCode;
 
-    @Column(unique = true)
     private String phoneNumber;
 
     private LocalDate pickUpDate;
