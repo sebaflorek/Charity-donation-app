@@ -1,6 +1,7 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.dto.DonationCreateDto;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
@@ -32,6 +34,11 @@ public class DonationController {
     @ModelAttribute("categoryList")
     public List<Category> getCategories() {
         return categoryService.findAll();
+    }
+
+    @ModelAttribute("currentUser")
+    public CurrentUser getCurrentUser(@AuthenticationPrincipal CurrentUser currentUser) {
+        return currentUser;
     }
 
     /* ================= DONATION MANAGEMENT ================= */

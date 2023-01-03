@@ -39,9 +39,9 @@ public class User {
 
     private String resetPasswordToken;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Donation> donations;
+//    @OneToMany
+//    @JoinColumn(name = "user_id")
+//    private List<Donation> donations;
 
 
 }

@@ -45,7 +45,7 @@ public class DonationService {
         return donationRepository.count();
     }
 
-    public long countAllBags() {
+    public long countAllBags() { // Zrobić tu optional
         if (donationRepository.count() > 0) {
             return donationRepository.getNumberOfBags();
         }

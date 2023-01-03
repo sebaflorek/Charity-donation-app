@@ -26,7 +26,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model) {
-        List<Institution> institutions = institutionService.findAll();
+        List<Institution> institutions = institutionService.findAll(); // przeanalizować pageable
         model.addAttribute("institutionList", institutions);
         model.addAttribute("donationNum", donationService.countAllDonations());
         model.addAttribute("bagsNum", donationService.countAllBags());

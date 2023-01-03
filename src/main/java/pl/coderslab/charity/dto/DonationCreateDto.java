@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.User;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -48,5 +49,7 @@ public class DonationCreateDto {
 
     @Size(max = 600, message = "{invalid.pickUpComment.pickUpComment-length}")
     private String pickUpComment;
+
+    private User user;
 
 }

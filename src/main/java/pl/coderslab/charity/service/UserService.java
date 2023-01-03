@@ -34,7 +34,7 @@ public class UserService {
         user.setSurname(userCreateDto.getSurname());
         user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         user.setEmail(userCreateDto.getEmail());
-        user.setEnabled(1);
+        user.setEnabled(1); // set Enable po potwierdzaniu mailowym
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         userRepository.save(user);
     }
