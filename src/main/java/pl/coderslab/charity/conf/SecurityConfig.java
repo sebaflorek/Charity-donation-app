@@ -20,7 +20,7 @@ public class SecurityConfig {
                         "/login").permitAll()
                 .antMatchers("/app/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().formLogin().defaultSuccessUrl("/")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error=true")
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
     }

@@ -50,4 +50,14 @@ public class HomeController {
         return "userRegisterConfirm";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "userLogin";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "userLogout";
+    }
+
 }

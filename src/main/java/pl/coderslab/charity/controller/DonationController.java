@@ -41,6 +41,9 @@ public class DonationController {
         return currentUser;
     }
 
+    /* ================= DONATION READ ================= */
+
+
     /* ================= DONATION MANAGEMENT ================= */
     @GetMapping("/form")
     public String donationForm(Model model) {
