@@ -3,7 +3,6 @@ package pl.coderslab.charity.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,7 +36,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    private String resetPasswordToken;
+    private String token;
 
 //    @OneToMany
 //    @JoinColumn(name = "user_id")

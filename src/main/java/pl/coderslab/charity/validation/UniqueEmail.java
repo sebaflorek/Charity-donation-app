@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
+@Constraint(validatedBy = {UniqueEmailValidator.class, UniqueEmailEditValidator.class})
 public @interface UniqueEmail {
     String message() default "{invalid.email.email-unique}";
     Class<?>[] groups() default {};

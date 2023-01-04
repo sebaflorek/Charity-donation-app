@@ -19,7 +19,7 @@
             <li class="logged-user">
                 Witaj <b style="text-transform: capitalize"><sec:authentication property="principal.username"/></b>
                 <ul class="dropdown">
-                    <li><a href='<c:url value="/"/>'>Profil</a></li>
+                    <li><a href='<c:url value="/app/user/profile"/>'>Profil</a></li>
                     <li><a href='<c:url value="/"/>'>Moje zbiórki</a></li>
                     <sec:authorize access="hasRole('ADMIN')">
                         <li><a href='<c:url value="/admin/panel"/>'><b>ADMIN PANEL</b></a></li>

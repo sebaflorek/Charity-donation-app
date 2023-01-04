@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.dto.UserCreateDto;
+import pl.coderslab.charity.dto.UserEditDto;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.mapper.UserMapper;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
@@ -20,12 +22,13 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public void save(User user) {
         userRepository.save(user);
     }
-    
+
     public void createUser(UserCreateDto userCreateDto) {
         User user = new User();
         Role userRole = roleRepository.findByName("ROLE_USER");
@@ -37,6 +40,10 @@ public class UserService {
         user.setEnabled(1); // set Enable po potwierdzaniu mailowym
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         userRepository.save(user);
+    }
+
+    public User findById(long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     public User findByUsername(String username) {
@@ -51,8 +58,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void update(User user) {
-        userRepository.save(user);
+    public void update(UserEditDto userEditDto) {
+        User user = userRepository.findById(userEditDto.getId()).orElse(null);
+        if (user != null) {
+            userMapper.userEditDtoToUserEntity(user, userEditDto);
+            userRepository.save(user);
+        }
     }
 
     public void deleteById(Long id) {

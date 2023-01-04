@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueUsernameValidator.class)
+@Constraint(validatedBy = {UniqueUsernameValidator.class, UniqueUsernameEditValidator.class})
 public @interface UniqueUsername {
     String message() default "{invalid.username.username-unique}";
     Class<?>[] groups() default {};

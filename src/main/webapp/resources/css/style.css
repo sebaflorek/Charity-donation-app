@@ -1874,3 +1874,17 @@ footer .bottom-line--icons a img {
     background-size: 16px;
     border-bottom: 10px;
 }
+
+.user-details {
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+}
+.user-details > p {
+    margin: 0 auto 30px;
+    max-width: 630px;
+    width: 100%;
+    font-size: 1.8rem;
+    text-align: center;
+    line-height: 2em;
+}
