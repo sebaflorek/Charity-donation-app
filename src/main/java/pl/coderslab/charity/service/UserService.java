@@ -3,6 +3,7 @@ package pl.coderslab.charity.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.dto.UserChangePassDto;
 import pl.coderslab.charity.dto.UserCreateDto;
 import pl.coderslab.charity.dto.UserEditDto;
 import pl.coderslab.charity.entity.Role;
@@ -62,6 +63,14 @@ public class UserService {
         User user = userRepository.findById(userEditDto.getId()).orElse(null);
         if (user != null) {
             userMapper.userEditDtoToUserEntity(user, userEditDto);
+            userRepository.save(user);
+        }
+    }
+
+    public void updatePassword(UserChangePassDto userChangePassDto) {
+        User user = userRepository.findById(userChangePassDto.getId()).orElse(null);
+        if (user != null) {
+            user.setPassword(passwordEncoder.encode(userChangePassDto.getNewPassword()));
             userRepository.save(user);
         }
     }

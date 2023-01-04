@@ -12,6 +12,7 @@
 <nav class="container container--70">
     <ul class="nav--actions">
         <sec:authorize access="!isAuthenticated()">
+            <%--        <sec:authorize access="isAnonymous()">--%>
             <li><a href='<c:url value="/login"/>' class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href='<c:url value="/register"/>' class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </sec:authorize>
