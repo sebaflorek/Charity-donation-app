@@ -45,11 +45,8 @@ public class DonationService {
         return donationRepository.count();
     }
 
-    public long countAllBags() { // Zrobić tu optional
-        if (donationRepository.count() > 0) {
-            return donationRepository.getNumberOfBags();
-        }
-        return 0;
+    public int countAllBags() {
+        return donationRepository.getNumberOfBags().orElse(0);
     }
 
 }
