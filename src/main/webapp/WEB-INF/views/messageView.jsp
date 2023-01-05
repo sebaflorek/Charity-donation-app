@@ -15,7 +15,7 @@
 <header class="header--form-page">
     <%@include file="fragments/header.jsp" %>
     <div class="slogan container container--90">
-        <h2>
+        <h2 class="white-shadow">
             ${resultMsg}
         </h2>
     </div>

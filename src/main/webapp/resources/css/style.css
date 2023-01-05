@@ -1888,3 +1888,15 @@ footer .bottom-line--icons a img {
     text-align: center;
     line-height: 2em;
 }
+
+.white-shadow {
+    text-shadow:
+            0 0 5px white,
+            0 0 10px white,
+            0 0 20px white;
+            /*0 0 40px white,*/
+            /*0 0 80px white;*/
+            /*0 0 90px white,*/
+            /*0 0 100px white,*/
+            /*0 0 150px white;*/
+}

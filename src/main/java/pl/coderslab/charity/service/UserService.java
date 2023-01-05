@@ -1,17 +1,20 @@
 package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.dto.UserChangePassDto;
 import pl.coderslab.charity.dto.UserCreateDto;
 import pl.coderslab.charity.dto.UserEditDto;
+import pl.coderslab.charity.email.EmailService;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.mapper.UserMapper;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,12 +28,13 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
     public void save(User user) {
         userRepository.save(user);
     }
 
-    public void createUser(UserCreateDto userCreateDto) {
+    public void createUser(UserCreateDto userCreateDto, HttpServletRequest request) {
         User user = new User();
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setUsername(userCreateDto.getUsername());
@@ -38,8 +42,16 @@ public class UserService {
         user.setSurname(userCreateDto.getSurname());
         user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         user.setEmail(userCreateDto.getEmail());
-        user.setEnabled(1); // set Enable po potwierdzaniu mailowym
+        String token = RandomString.make(30);
+        user.setToken(token);
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
+        userRepository.save(user);
+        sendActivationLink(userCreateDto.getEmail(), token, request);
+    }
+
+    public void activateUser(User user) {
+        user.setEnabled(1);
+        user.setToken(null);
         userRepository.save(user);
     }
 
@@ -53,6 +65,10 @@ public class UserService {
 
     public User findByUserEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public User findByToken(String token) {
+        return userRepository.findUserByToken(token);
     }
 
     public List<User> findAll() {
@@ -77,6 +93,21 @@ public class UserService {
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    private void sendActivationLink(String email, String token, HttpServletRequest request) {
+        User user = userRepository.findUserByEmail(email);
+        String url = request.getRequestURL().toString();
+        String link = url.replace(request.getServletPath(), "");
+        String activateAccLink = link + "/activate-account?token=" + token;
+        String title = "W Dobre Ręce: aktywuj konto";
+        String message = "Cześć " + user.getUsername().toUpperCase() + ",\n" +
+                "\nPoniżej przesyłamy link do aktywacji konta.\n" +
+                "\n" + activateAccLink + "\n" +
+                "\nPozdrawiamy,\n" +
+                "Zespół \"Oddam w dobre ręce\"";
+        emailService.sendSimpleEmail(email, title, message);
+
     }
 
 

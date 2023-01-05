@@ -15,9 +15,9 @@
 <header class="header--form-page">
     <%@include file="fragments/header.jsp" %>
     <div class="slogan container container--90" style="justify-content: center">
-        <h2>
-            Witaj <b style="text-transform: capitalize; color: #317f51">${registeredUser}</b> w aplikacji "Oddaj w Dobre Ręce".<br>
-            <p><a href='<c:url value="/login"/>'><u>Zaloguj się</u></a>, by w pełni zacząć korzystać z serwisu.</p>
+        <h2 class="white-shadow">
+            Witaj <b style="text-transform: capitalize; color: #317f51">${registeredUser}</b> w aplikacji "Oddam w dobre ręce".<br>
+            <p>Na podany adres email wysłaliśmy link aktywacyjny. Aktywuj konto, by dokończyć rejestrację.</p>
         </h2>
     </div>
 </header>

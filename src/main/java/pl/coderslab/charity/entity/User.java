@@ -28,6 +28,7 @@ public class User {
     @Column(nullable = false, unique = true, length = 60)
     private String email;
 
+    @Column(columnDefinition = "tinyint default 0")
     private int enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)

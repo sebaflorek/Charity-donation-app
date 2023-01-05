@@ -91,6 +91,7 @@ public class UserController {
 //            throw new RuntimeException(e);
 //        }
         /* KONIEC TESTÓW */
+
         String resultMsg = "Hasło zostało zmienione. Zaloguj się ponownie używając nowego hasła.";
         model.addAttribute("resultMsg", resultMsg);
         return "messageView";
