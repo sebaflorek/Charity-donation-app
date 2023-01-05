@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.dto.UserChangePassDto;
 import pl.coderslab.charity.dto.UserCreateDto;
 import pl.coderslab.charity.dto.UserEditDto;
+import pl.coderslab.charity.dto.UserForgotPassDto;
 import pl.coderslab.charity.email.EmailService;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
@@ -91,6 +92,21 @@ public class UserService {
         }
     }
 
+    public void resetPassword(UserForgotPassDto userForgotPassDto, HttpServletRequest request) {
+        String email = userForgotPassDto.getEmail();
+        User user = userRepository.findUserByEmail(email);
+        String token = RandomString.make(30);
+        user.setToken(token);
+        userRepository.save(user);
+        sendResetPasswordLink(user, request);
+    }
+
+    public void setNewAfterResetPassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setToken(null);
+        userRepository.save(user);
+    }
+
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
@@ -107,6 +123,19 @@ public class UserService {
                 "\nPozdrawiamy,\n" +
                 "Zespół \"Oddam w dobre ręce\"";
         emailService.sendSimpleEmail(email, title, message);
+    }
+
+    private void sendResetPasswordLink(User user, HttpServletRequest request) {
+        String url = request.getRequestURL().toString();
+        String link = url.replace(request.getServletPath(), "");
+        String resetPassLink = link + "/reset-password?token=" + user.getToken();
+        String title = "W Dobre Ręce: reset hasła";
+        String message = "Cześć " + user.getUsername().toUpperCase() + ",\n" +
+                "\nPoniżej przesyłamy link do zresetowania Twojego hasła.\n" +
+                "\n" + resetPassLink + "\n" +
+                "\nPozdrawiamy,\n" +
+                "Zespół \"Oddam w dobre ręce\"";
+        emailService.sendSimpleEmail(user.getEmail(), title, message);
 
     }
 

@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @UniqueEmail
 @UniqueUsername
 @ConfirmPassword
-//@CheckPasswordComplexity
+@CheckPasswordComplexity
 public class UserCreateDto {
 
     @NotBlank

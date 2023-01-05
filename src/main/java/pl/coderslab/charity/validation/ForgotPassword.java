@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {CheckPasswordComplexityValidator.class, CheckNewPasswordComplexityValidator.class, CheckResetPasswordComplexityValidator.class})
-public @interface CheckPasswordComplexity {
-    String message() default "{invalid.password.password-complexity}";
+@Constraint(validatedBy = ForgotPasswordEmailValidator.class)
+public @interface ForgotPassword {
+    String message() default "{invalid.email.email-notfound}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
