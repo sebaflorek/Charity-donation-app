@@ -111,6 +111,10 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public long countUsers() {
+        return userRepository.count();
+    }
+
     private void sendActivationLink(String email, String token, HttpServletRequest request) {
         User user = userRepository.findUserByEmail(email);
         String url = request.getRequestURL().toString();

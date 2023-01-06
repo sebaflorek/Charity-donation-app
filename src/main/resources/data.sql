@@ -10,6 +10,7 @@ VALUES ('user', 'user@mr.pl', '$2a$10$vATBTwreQmUc4NmmQCjr8.q3hyIYNx582a5ukVflpx
 
 INSERT INTO users_roles (user_id, role_id)
 VALUES (1, 1),
+       (2, 1),
        (2, 2)
 ;
 

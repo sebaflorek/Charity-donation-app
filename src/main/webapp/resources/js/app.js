@@ -187,8 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (i === checkedCategories.length - 1) {
           separator = "";
         }
-        debugger;
-        console.log("test")
+        // debugger;
         bagsDescription += checkedCategories[i].innerText + separator;
       }
 
@@ -224,4 +223,22 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
+  /* Scroll top button */
+    let scrollButton = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollButton.style.display = "block";
+        } else {
+            scrollButton.style.display = "none";
+        }
+    }
 });
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}

@@ -23,6 +23,7 @@
     <form method="POST">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="form-group" style="text-align: center">
+            <button class="btn" type="button" onclick="history.back()">Anuluj</button>
             <button class="btn" type="submit">Tak, wyloguj się</button>
         </div>
     </form>

@@ -23,7 +23,7 @@
                     <li><a href='<c:url value="/app/user/profile"/>'>Profil</a></li>
                     <li><a href='<c:url value="/"/>'>Moje zbiórki</a></li>
                     <sec:authorize access="hasRole('ADMIN')">
-                        <li><a href='<c:url value="/admin/panel"/>'><b>ADMIN PANEL</b></a></li>
+                        <li><a href='<c:url value="/admin/panel"/>'><b>Admin panel</b></a></li>
                     </sec:authorize>
                     <li><a href='<c:url value="/logout"/>'>Wyloguj</a></li>
                 </ul>

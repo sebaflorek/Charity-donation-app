@@ -36,4 +36,8 @@ public class InstitutionService {
         institutionRepository.deleteById(id);
     }
 
+    public long countInstitutions() {
+        return institutionRepository.count();
+    }
+
 }
