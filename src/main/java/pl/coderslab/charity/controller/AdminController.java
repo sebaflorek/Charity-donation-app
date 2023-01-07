@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,6 +31,20 @@ public class AdminController {
         return "admin-panel";
     }
 
+    /* ================= INSTITUTION MANAGEMENT ================= */
+    @GetMapping("/institution/list")
+    public String getInstitutionList(Model model) {
+        List<Institution> institutions = institutionService.findAll();
+        model.addAttribute("institutionList", institutions);
+        return "admin-institutionList";
+    }
+
+
+
+
+    /* ================= DONATION MANAGEMENT ================= */
+    /* ================= USER MANAGEMENT ================= */
+    /* ================= END - MANAGEMENT  ================= */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         new SecurityContextLogoutHandler().logout(request, null, null);
