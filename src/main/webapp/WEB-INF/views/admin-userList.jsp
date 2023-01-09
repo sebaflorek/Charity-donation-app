@@ -42,16 +42,14 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Instytucje</h1>
-                    <a href='<c:url value="/admin/institution/add"/>' class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-plus-circle fa-sm text-white-50"></i> Dodaj instytucję</a>
+                    <h1 class="h3 mb-2 text-gray-800">Użytkownicy</h1>
                 </div>
-                <p class="mb-4">Lista dostępnych instytucji:</p>
+                <p class="mb-4">Lista zarejestrowanych użytkowników:</p>
 
                 <!-- Begin - MAIN CONTENT -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Institutions</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Users</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -59,24 +57,59 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Username</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Enabled</th>
+                                    <th>Roles</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <c:forEach var="institution" items="${institutionList}">
+                                <c:forEach var="user" items="${userList}">
                                     <tr>
-                                        <td>${institution.id}</td>
-                                        <td>${institution.name}</td>
-                                        <td>${institution.description}</td>
+                                        <td>${user.id}</td>
+                                        <td>${user.username}</td>
+                                        <td>${user.name}</td>
+                                        <td>${user.surname}</td>
+                                        <td>${user.email}</td>
                                         <td>
-                                            <a href='<c:url value="/admin/institution/edit/${institution.id}"/>' class="btn btn-secondary btn-icon-split btn-sm">
+                                            <c:choose>
+                                                <c:when test="${user.enabled==1}">
+                                                    YES
+                                                </c:when>
+                                                <c:when test="${user.enabled==0}">
+                                                    NO
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:forEach varStatus="loopStatus" var="role" items="${user.roles}">
+                                                ${role.name}<c:if test="${!loopStatus.last}">,</c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <a href='<c:url value="/admin/user/edit/${user.id}"/>' class="btn btn-secondary btn-icon-split btn-sm">
                                                 <span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
                                                 <span class="text">Edytuj</span>
                                             </a>
-                                            <a href='<c:url value="/admin/institution/delete/${institution.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
+                                            <c:choose>
+                                                <c:when test="${user.enabled=='1'}">
+                                                    <a href='<c:url value="/admin/user/disable/${user.id}"/>' class="btn btn-outline-danger btn-icon-split btn-sm">
+                                                        <span class="icon text-gray-600"><i class="fas fa-lock"></i></span>
+                                                        <span class="text">Zablokuj</span>
+                                                    </a>
+                                                </c:when>
+                                                <c:when test="${user.enabled=='0'}">
+                                                    <a href='<c:url value="/admin/user/enable/${user.id}"/>' class="btn btn-outline-success btn-icon-split btn-sm">
+                                                        <span class="icon text-gray-600"><i class="fas fa-lock-open"></i></span>
+                                                        <span class="text">Odblokuj</span>
+                                                    </a>
+                                                </c:when>
+                                            </c:choose>
+                                            <a href='<c:url value="/admin/user/delete/${user.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
                                                 <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                                                 <span class="text">Usuń</span>
                                             </a>

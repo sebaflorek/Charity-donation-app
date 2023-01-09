@@ -49,4 +49,12 @@ public class DonationService {
         return donationRepository.getNumberOfBags().orElse(0);
     }
 
+    public boolean existsDonationByInstitutionId (long id) {
+        return donationRepository.existsDonationByInstitutionId(id);
+    }
+
+    public boolean existsDonationByCategoryId (long id) {
+        return donationRepository.existsDonationByCategoriesId(id);
+    }
+
 }

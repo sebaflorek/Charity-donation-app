@@ -42,16 +42,14 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Instytucje</h1>
-                    <a href='<c:url value="/admin/institution/add"/>' class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-plus-circle fa-sm text-white-50"></i> Dodaj instytucję</a>
+                    <h1 class="h3 mb-2 text-gray-800">Datki</h1>
                 </div>
-                <p class="mb-4">Lista dostępnych instytucji:</p>
+                <p class="mb-4">Lista zarejestrowanych datków:</p>
 
                 <!-- Begin - MAIN CONTENT -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Institutions</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Donations</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -59,24 +57,37 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Actions</th>
+                                    <th>Categories</th>
+                                    <th>Bags Number</th>
+                                    <th>Institution</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <c:forEach var="institution" items="${institutionList}">
+                                <c:forEach var="donation" items="${donationList}">
                                     <tr>
-                                        <td>${institution.id}</td>
-                                        <td>${institution.name}</td>
-                                        <td>${institution.description}</td>
+                                        <td>${donation.id}</td>
                                         <td>
-                                            <a href='<c:url value="/admin/institution/edit/${institution.id}"/>' class="btn btn-secondary btn-icon-split btn-sm">
+                                            <c:forEach varStatus="loopStatus" var="category" items="${donation.categories}">
+                                                ${category.name}<c:if test="${!loopStatus.last}">,</c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>${donation.quantity}</td>
+                                        <td>${donation.institution.name}</td>
+                                        <td>Nie odebrany</td>
+                                        <%--Nie odebrany/odebrany/przekazany--%>
+                                        <td>
+                                            <a href='<c:url value="/admin/donation/details/${donation.id}"/>' class="btn btn-info btn-icon-split btn-sm">
+                                                <span class="icon text-gray-600"><i class="fas fa-info"></i></span>
+                                                <span class="text">Szczegóły</span>
+                                            </a>
+                                            <a href='<c:url value="/admin/donation/edit/${donation.id}"/>' class="btn btn-secondary btn-icon-split btn-sm">
                                                 <span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
                                                 <span class="text">Edytuj</span>
                                             </a>
-                                            <a href='<c:url value="/admin/institution/delete/${institution.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
+                                            <a href='<c:url value="/admin/donation/delete/${donation.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
                                                 <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                                                 <span class="text">Usuń</span>
                                             </a>

@@ -13,4 +13,8 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query("select sum(quantity) from Donation")
     Optional<Integer> getNumberOfBags();
 
+    boolean existsDonationByInstitutionId(Long id);
+
+    boolean existsDonationByCategoriesId(Long id);
+
 }

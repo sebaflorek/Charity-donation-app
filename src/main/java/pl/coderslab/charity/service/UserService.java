@@ -20,6 +20,7 @@ import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -75,6 +76,16 @@ public class UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    public List<User> findAllRegularUsers() {
+        return userRepository.findAllByRolesName("ROLE_USER").stream().filter(user -> user.getRoles().size() == 1).collect(Collectors.toList());
+    }
+
+    public List<User> findAllAdmins() {
+        return userRepository.findAllByRolesName("ROLE_ADMIN");
+    }
+
+
 
     public void update(UserEditDto userEditDto) {
         User user = userRepository.findById(userEditDto.getId()).orElse(null);

@@ -40,4 +40,8 @@ public class InstitutionService {
         return institutionRepository.count();
     }
 
+    public boolean isInstitutionUsed(long id) {
+        return false;
+    }
+
 }
