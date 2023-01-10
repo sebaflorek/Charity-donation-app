@@ -57,4 +57,8 @@ public class DonationService {
         return donationRepository.existsDonationByCategoriesId(id);
     }
 
+    public boolean existsDonationByUserId (long id) {
+        return donationRepository.existsDonationByUserId(id);
+    }
+
 }

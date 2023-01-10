@@ -60,6 +60,7 @@
                                     <th>Categories</th>
                                     <th>Bags Number</th>
                                     <th>Institution</th>
+                                    <th>Donor</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -76,6 +77,7 @@
                                         </td>
                                         <td>${donation.quantity}</td>
                                         <td>${donation.institution.name}</td>
+                                        <td>${donation.user.username}</td>
                                         <td>Nie odebrany</td>
                                         <%--Nie odebrany/odebrany/przekazany--%>
                                         <td>

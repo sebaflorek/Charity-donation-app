@@ -17,4 +17,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     boolean existsDonationByCategoriesId(Long id);
 
+    boolean existsDonationByUserId(Long id);
+
 }

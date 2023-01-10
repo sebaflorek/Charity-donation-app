@@ -41,27 +41,28 @@ steps.
 3. MySQL
 4. HTML, JavaScript, CSS
 5. Mapstruct and lombok
+6. Bootstrap for admin dashboard
 
-### Features
+### App Features
 1. <ins>User</ins>
-- ...
-- ...
-- ...
+- Registering new account.
+- Activating your account by activation link via email.
+- Editing and deleting your account.
+- Forgot password feature.
 2. <ins>Donation</ins>
-- ...
-- ...
-- ...
+- Making a donation using complex form.
+- Edit your donation details before handing over.
+- Mark your donation as handed over.
 3. <ins>Administrator</ins>
-- ...
-- ...
-- ...
+- Add/Edit/Delete trusted institution.
+- Change Status/Edit/Delete donation.
+- Disable/Edit/Delete user.
+- Add/Edit/Delete administrator.
 
 ### Future features
-1. ...
-2. ...
-3. ...
+1. More complex administration features.
+2. Adding captcha.
 
+## Contact me
 
-## Contact us
-
-> 📫 **example@example.com**
+> 📫 **moto.route.pl@gmail.com**

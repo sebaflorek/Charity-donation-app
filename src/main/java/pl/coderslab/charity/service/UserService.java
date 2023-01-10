@@ -17,6 +17,7 @@ import pl.coderslab.charity.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -49,6 +50,20 @@ public class UserService {
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         userRepository.save(user);
         sendActivationLink(userCreateDto.getEmail(), token, request);
+    }
+
+    public void createAdmin(UserCreateDto userCreateDto) {
+        User user = new User();
+        user.setUsername(userCreateDto.getUsername());
+        user.setName(userCreateDto.getName());
+        user.setSurname(userCreateDto.getSurname());
+        user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
+        user.setEmail(userCreateDto.getEmail());
+        user.setEnabled(1);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole, adminRole)));
+        userRepository.save(user);
     }
 
     public void activateUser(User user) {
@@ -84,8 +99,6 @@ public class UserService {
     public List<User> findAllAdmins() {
         return userRepository.findAllByRolesName("ROLE_ADMIN");
     }
-
-
 
     public void update(UserEditDto userEditDto) {
         User user = userRepository.findById(userEditDto.getId()).orElse(null);
@@ -124,6 +137,10 @@ public class UserService {
 
     public long countUsers() {
         return userRepository.count();
+    }
+
+    public void updateUserStatus(Long id, int status) {
+        userRepository.updateUserStatus(id, status);
     }
 
     private void sendActivationLink(String email, String token, HttpServletRequest request) {

@@ -98,7 +98,7 @@
                                                 <span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
                                                 <span class="text">Edytuj</span>
                                             </a>
-                                            <a href='<c:url value="/admin/delete/${user.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
+                                            <a href='<c:url value="/admin/delete/${user.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Administratora?')">
                                                 <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                                                 <span class="text">Usuń</span>
                                             </a>
