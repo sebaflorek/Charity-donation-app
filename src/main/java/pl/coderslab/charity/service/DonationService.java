@@ -33,6 +33,10 @@ public class DonationService {
         return donationRepository.findAll();
     }
 
+    public List<Donation> findAllByUserId(long id) {
+        return donationRepository.findAllByUserId(id);
+    }
+
     public void update(Donation donation) {
         donationRepository.save(donation);
     }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.coderslab.charity.entity.Donation;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,5 +19,7 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     boolean existsDonationByCategoriesId(Long id);
 
     boolean existsDonationByUserId(Long id);
+
+    List<Donation> findAllByUserId(Long userId);
 
 }

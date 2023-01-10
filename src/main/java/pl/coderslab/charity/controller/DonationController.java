@@ -7,8 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.dto.DonationCreateDto;
+import pl.coderslab.charity.dto.DonationReadDto;
 import pl.coderslab.charity.entity.Category;
+import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.mapper.DonationMapper;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationService;
@@ -16,6 +19,7 @@ import pl.coderslab.charity.service.InstitutionService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/app/donation")
@@ -24,6 +28,7 @@ public class DonationController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final CategoryService categoryService;
+    private final DonationMapper donationMapper;
 
     /* ================= MODEL ATTRIBUTES ================= */
     @ModelAttribute("institutionList")
@@ -42,6 +47,16 @@ public class DonationController {
     }
 
     /* ================= DONATION READ ================= */
+    @GetMapping("/my-list")
+    public String getMyDonations(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        List<DonationReadDto> donations = donationService.findAllByUserId(currentUser.getUser().getId())
+                .stream()
+                .map(donationMapper::donationToDonationReadDto)
+                .collect(Collectors.toList());
+        model.addAttribute("donationList", donations);
+        return "app-userDonationList";
+    }
+
 
 
     /* ================= DONATION MANAGEMENT ================= */

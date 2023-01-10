@@ -21,7 +21,7 @@
                 Witaj <b style="text-transform: capitalize"><sec:authentication property="principal.username"/></b>
                 <ul class="dropdown">
                     <li><a href='<c:url value="/app/user/profile"/>'>Profil</a></li>
-                    <li><a href='<c:url value="/"/>'>Moje zbiórki</a></li>
+                    <li><a href='<c:url value="/app/donation/my-list"/>'>Moje zbiórki</a></li>
                     <sec:authorize access="hasRole('ADMIN')">
                         <li><a href='<c:url value="/admin/panel"/>'><b>Admin panel</b></a></li>
                     </sec:authorize>

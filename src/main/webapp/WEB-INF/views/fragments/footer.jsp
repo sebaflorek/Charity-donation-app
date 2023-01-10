@@ -28,4 +28,6 @@
             <a href="#" class="btn btn--small"><img src="<c:url value="/resources/images/icon-instagram.svg"/>"/></a>
         </div>
     </div>
+    <!-- Scroll to Top Button-->
+    <button onclick="topFunction()" id="scrollTopBtn" title="Go to top">Top</button>
 </footer>

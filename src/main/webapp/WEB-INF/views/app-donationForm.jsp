@@ -292,7 +292,5 @@
 <%--CONTENT-STOP--%>
 <%@include file="fragments/footer.jsp" %>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
-<!-- Scroll to Top Button-->
-<button onclick="topFunction()" id="scrollTopBtn" title="Go to top">Top</button>
 </body>
 </html>

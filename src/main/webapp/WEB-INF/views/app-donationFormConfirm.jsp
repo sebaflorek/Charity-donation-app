@@ -15,7 +15,7 @@
 <header class="header--form-page">
   <%@include file="fragments/header.jsp" %>
   <div class="slogan container container--90">
-    <h2>
+    <h2 class="white-shadow">
       Dziękujemy za przesłanie formularza. Na maila prześlemy wszelkie
       informacje o odbiorze.
     </h2>
