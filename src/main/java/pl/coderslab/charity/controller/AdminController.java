@@ -140,11 +140,13 @@ public class AdminController {
 
     @RequestMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable Long id, Model model) {
+        /* PREVIOUS VERSION
         if (donationService.existsDonationByUserId(id)) {
             String resultMsg = "Nie można usunąć Użytkownika, który ma zarejestrowane datki. Aby usunąć użytkownika, usuń pierw jego datki.";
             model.addAttribute("resultMsg", resultMsg);
             return "admin-message";
         }
+        */
         userService.deleteById(id);
         return "redirect:/admin/user/list";
     }

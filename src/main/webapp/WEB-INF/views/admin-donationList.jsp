@@ -77,19 +77,35 @@
                                         </td>
                                         <td>${donation.quantity}</td>
                                         <td>${donation.institution.name}</td>
-                                        <td>${donation.user.username}</td>
-                                        <td>Nie odebrany</td>
-                                        <%--Nie odebrany/odebrany/przekazany--%>
                                         <td>
-                                            <a href='<c:url value="/admin/donation/details/${donation.id}"/>' class="btn btn-info btn-icon-split btn-sm">
+                                            <c:out value="${donation.user.username}" default="<deleted>"/>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${donation.status==0}">
+                                                    Nieodebrany
+                                                </c:when>
+                                                <c:when test="${donation.status==1}">
+                                                    Odebrany
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+
+                                        <td>
+                                            <a href='<c:url value="/admin/donation/details/${donation.id}"/>'
+                                               class="btn btn-info btn-icon-split btn-sm">
                                                 <span class="icon text-gray-600"><i class="fas fa-info"></i></span>
                                                 <span class="text">Szczegóły</span>
                                             </a>
-                                            <a href='<c:url value="/admin/donation/edit/${donation.id}"/>' class="btn btn-secondary btn-icon-split btn-sm">
-                                                <span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+                                            <a href='<c:url value="/admin/donation/edit/${donation.id}"/>'
+                                               class="btn btn-secondary btn-icon-split btn-sm">
+                                                <span class="icon text-gray-600"><i
+                                                        class="fas fa-arrow-right"></i></span>
                                                 <span class="text">Edytuj</span>
                                             </a>
-                                            <a href='<c:url value="/admin/donation/delete/${donation.id}"/>' class="btn btn-danger btn-icon-split btn-sm" onclick="return confirm('Czy na pewno usunąć Instytucję?')">
+                                            <a href='<c:url value="/admin/donation/delete/${donation.id}"/>'
+                                               class="btn btn-danger btn-icon-split btn-sm"
+                                               onclick="return confirm('Czy na pewno usunąć Instytucję?')">
                                                 <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                                                 <span class="text">Usuń</span>
                                             </a>

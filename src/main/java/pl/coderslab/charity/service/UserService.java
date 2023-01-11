@@ -12,6 +12,7 @@ import pl.coderslab.charity.email.EmailService;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.mapper.UserMapper;
+import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final DonationRepository donationRepository;
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
     private final EmailService emailService;
@@ -132,6 +134,7 @@ public class UserService {
     }
 
     public void deleteById(Long id) {
+        donationRepository.updateDonationUser(id, null);
         userRepository.deleteById(id);
     }
 
