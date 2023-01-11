@@ -3,7 +3,6 @@ package pl.coderslab.charity.dto;
 import lombok.Data;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,7 +21,7 @@ public class DonationReadDto {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
-    private User user; // DAĆ TU USER READ DTO UZUPEŁNIONE O ID
+    private UserReadDto user;
     // Additional
     private String created;
     private String pickedUpDateTime;

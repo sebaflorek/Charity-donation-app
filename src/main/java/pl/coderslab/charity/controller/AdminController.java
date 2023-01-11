@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.dto.DonationReadDto;
 import pl.coderslab.charity.dto.UserCreateDto;
 import pl.coderslab.charity.dto.UserDetailsDto;
 import pl.coderslab.charity.dto.UserEditDto;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.mapper.DonationMapper;
 import pl.coderslab.charity.mapper.UserMapper;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.service.DonationService;
@@ -31,6 +33,7 @@ public class AdminController {
     private final UserService userService;
     private final InstitutionService institutionService;
     private final UserMapper userMapper;
+    private final DonationMapper donationMapper;
 
     @RequestMapping("/panel")
     public String showPanel(Model model) {
@@ -94,7 +97,10 @@ public class AdminController {
     /* ================= DONATION MANAGEMENT ================= */
     @GetMapping("/donation/list")
     public String getDonationList(Model model) {
-        List<Donation> donations = donationService.findAll(); // chwilowo bez DTO ze wszystkimi polami
+        List<DonationReadDto> donations = donationService.findAll()
+                .stream()
+                .map(donationMapper::donationToDonationReadDto)
+                .collect(Collectors.toList());
         model.addAttribute("donationList", donations);
         return "admin-donationList";
     }
