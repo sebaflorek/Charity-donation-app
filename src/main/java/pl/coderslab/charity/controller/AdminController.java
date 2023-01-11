@@ -139,7 +139,7 @@ public class AdminController {
     }
 
     @RequestMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable Long id, Model model) {
+    public String deleteUser(@PathVariable Long id) {
         /* PREVIOUS VERSION
         if (donationService.existsDonationByUserId(id)) {
             String resultMsg = "Nie można usunąć Użytkownika, który ma zarejestrowane datki. Aby usunąć użytkownika, usuń pierw jego datki.";
@@ -196,7 +196,7 @@ public class AdminController {
     @RequestMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         if (id.equals(currentUser.getUser().getId())) {
-            String resultMsg = "Nie możesz usunąć samego siebie.";
+            String resultMsg = "Jesteś administratorem! Nie możesz usunąć samego siebie.";
             model.addAttribute("resultMsg", resultMsg);
             return "admin-message";
         }

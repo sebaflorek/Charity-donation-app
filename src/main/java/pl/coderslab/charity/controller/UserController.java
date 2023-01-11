@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.dto.UserChangePassDto;
 import pl.coderslab.charity.dto.UserEditDto;
 import pl.coderslab.charity.dto.UserReadDto;
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.mapper.UserMapper;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.service.UserService;
@@ -93,6 +94,20 @@ public class UserController {
         /* KONIEC TESTÓW */
 
         String resultMsg = "Hasło zostało zmienione. Zaloguj się ponownie używając nowego hasła.";
+        model.addAttribute("resultMsg", resultMsg);
+        return "messageView";
+    }
+
+    @RequestMapping("/delete")
+    public String deleteUser(Model model, HttpServletRequest request, @AuthenticationPrincipal CurrentUser currentUser) {
+        String resultMsg;
+        if (currentUser.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            resultMsg = "Jesteś administratorem! Nie możesz usunąć samego siebie.";
+        } else {
+            userService.deleteById(currentUser.getUser().getId());
+            new SecurityContextLogoutHandler().logout(request, null, null);
+            resultMsg = "Zostałeś wylogowany, a Twoje konto zostało usunięte!";
+        }
         model.addAttribute("resultMsg", resultMsg);
         return "messageView";
     }
