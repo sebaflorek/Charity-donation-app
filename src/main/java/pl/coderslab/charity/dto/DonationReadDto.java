@@ -22,7 +22,7 @@ public class DonationReadDto {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
-    private User user; // DAĆ TU USER READ DTO albo samo ID (rozważyć samo ID na poziomie encji)
+    private User user; // DAĆ TU USER READ DTO UZUPEŁNIONE O ID
     // Additional
     private String created;
     private String pickedUpDateTime;

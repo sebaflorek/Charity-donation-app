@@ -57,6 +57,15 @@ public class DonationController {
         return "app-userDonationList";
     }
 
+    @GetMapping("/details/{id}")
+    public String getDonationDetails(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        Donation donation = donationService.findById(id);
+        if (donation.getUser().getId().equals(currentUser.getUser().getId())) {
+            return null;
+        }
+        return null;
+    }
+
 
 
     /* ================= DONATION MANAGEMENT ================= */

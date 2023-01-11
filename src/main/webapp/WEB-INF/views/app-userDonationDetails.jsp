@@ -10,9 +10,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Donation List</title>
+    <title>Donation Details</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/sortable.min.css"/>"/>
 </head>
 <body>
 <header>
@@ -21,6 +20,18 @@
 <%--CONTENT-START--%>
 <section class="login-page">
     <h2>Moje zbiórki</h2>
+    <c:if test="${hasErrors}">
+        <section class="form--steps" style="width: 100%">
+            <div class="form--steps-errorInstructions">
+                <div class="form--steps-container" style="text-align: center">
+                    <h3>Uwaga!</h3>
+                    <p class="active">
+                        Nie można zarejestrować użytkownika! Uzupełnij poprawnie wymagane pola.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </c:if>
     <c:if test="${not empty donationList}">
         <div class="app-table-container">
             <table class="sortable">
@@ -82,6 +93,5 @@
 <%--CONTENT-STOP--%>
 <%@include file="fragments/footer.jsp" %>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
-<script src="<c:url value="/resources/js/sortable.min.js"/>"></script>
 </body>
 </html>
