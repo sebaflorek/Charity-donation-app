@@ -61,9 +61,18 @@ public class DonationController {
     public String getDonationDetails(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         Donation donation = donationService.findById(id);
         if (donation.getUser().getId().equals(currentUser.getUser().getId())) {
-            return null;
+            model.addAttribute("donation", donationMapper.donationToDonationReadDto(donation));
+            return "app-userDonationDetails";
         }
-        return null;
+        String failMsg = "Wystąpił błąd! Nie możesz tego zrobić!";
+        model.addAttribute("resultMsg", failMsg);
+        return "messageView";
+    }
+
+    @GetMapping("/donated/{id}")
+    public String setDonationStatus(@PathVariable Long id, @AuthenticationPrincipal CurrentUser currentUser) {
+        donationService.setDonationReceivedStatus(id, currentUser.getUser().getId());
+        return "redirect:/app/donation/details/" + id;
     }
 
 

@@ -1922,7 +1922,7 @@ footer .bottom-line--icons a img {
     background-color: #555; /* Add a dark-grey background on hover */
 }
 
-/* TABLE */
+/* MY-TABLES */
 
 .app-table-container {
     margin: auto;
@@ -1942,4 +1942,25 @@ footer .bottom-line--icons a img {
 
 .sortable td {
     font-size: 1.6em;
+}
+
+.donation-details {
+    font-size: 1.6em;
+    padding-bottom: 20px;
+}
+
+.donation-details th {
+    padding: 10px;
+}
+
+.donation-details tr td:first-child {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.donation-details tr td:last-child {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
 }

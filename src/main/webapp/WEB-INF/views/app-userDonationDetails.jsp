@@ -19,76 +19,99 @@
 </header>
 <%--CONTENT-START--%>
 <section class="login-page">
-    <h2>Moje zbiórki</h2>
-    <c:if test="${hasErrors}">
-        <section class="form--steps" style="width: 100%">
-            <div class="form--steps-errorInstructions">
-                <div class="form--steps-container" style="text-align: center">
-                    <h3>Uwaga!</h3>
-                    <p class="active">
-                        Nie można zarejestrować użytkownika! Uzupełnij poprawnie wymagane pola.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </c:if>
-    <c:if test="${not empty donationList}">
-        <div class="app-table-container">
-            <table class="sortable">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Kategorie</th>
-                    <th>Torby</th>
-                    <th>Instytucja</th>
-                    <th>Utworzono</th>
-                    <th>Status</th>
-                    <th>Data odbioru</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-                <tbody id="app-table-content">
-                <c:forEach var="donation" items="${donationList}">
-                    <tr>
-                        <td>${donation.id}</td>
-                        <td>
-                            <c:forEach varStatus="loopStatus" var="category" items="${donation.categories}">
-                                ${category.name}<c:if test="${!loopStatus.last}">,</c:if>
-                            </c:forEach>
-                        </td>
-                        <td>${donation.quantity}</td>
-                        <td>${donation.institution.name}</td>
-                        <td>${donation.created}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${donation.status==1}">
-                                    Odebrane
-                                </c:when>
-                                <c:when test="${donation.status==0}">
-                                    Nieodebrane
-                                </c:when>
-                            </c:choose>
-                        </td>
-                        <td>${donation.pickedUpDateTime}</td>
-                        <td>
-                            <div class="form-group form-group--buttons">
-                                <a href='<c:url value="/app/donation/details/${donation.id}"/>' class="btn btn--small">Szczegóły</a>
-                                <a href='<c:url value="/app/donation/edit/${donation.id}"/>' class="btn btn--small">Edytuj</a>
-                                <a href='<c:url value="/app/donation/delete/${donation.id}"/>' class="btn btn--small"
-                                   onclick="return confirm('Czy na pewno chcesz usunąć ten Datek?')">Usuń</a>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+    <h2>Szczegóły datku</h2>
+    <div class="app-table-container">
+        <table class="donation-details">
+            <tr>
+                <td>Oddawane rzeczy:</td>
+                <td>
+                    <c:forEach varStatus="loopStatus" var="category" items="${donation.categories}">
+                        ${category.name}<c:if test="${!loopStatus.last}">,</c:if>
+                    </c:forEach>
+                </td>
+            </tr>
+            <tr>
+                <td>Ilość przekazywanych worków:</td>
+                <td>${donation.quantity} szt.</td>
+            </tr>
+            <tr>
+                <td>Dla fundacji:</td>
+                <td>"${donation.institution.name}"</td>
+            </tr>
+            <tr>
+                <td>Cel fundacji:</td>
+                <td>${donation.institution.description}</td>
+            </tr>
+            <th colspan="2">ADRES ODBIORU</th>
+            <tr>
+                <td>Ulica:</td>
+                <td>${donation.street}</td>
+            </tr>
+            <tr>
+                <td>Miasto:</td>
+                <td>${donation.city}</td>
+            </tr>
+            <tr>
+                <td>Kod pocztowy:</td>
+                <td>${donation.zipCode}</td>
+            </tr>
+            <tr>
+                <td>Numer telefonu:</td>
+                <td>${donation.phoneNumber}</td>
+            </tr>
+            <th colspan="2">TERMIN ODBIORU</th>
+            <tr>
+                <td>Miasto:</td>
+                <td>${donation.city}</td>
+            </tr>
+            <tr>
+                <td>Data:</td>
+                <td>${donation.pickUpDate}</td>
+            </tr>
+            <tr>
+                <td>Godzina:</td>
+                <td>${donation.pickUpTime}</td>
+            </tr>
+            <tr>
+                <td>Uwagi:</td>
+                <td>${donation.pickUpComment}</td>
+            </tr>
+            <th colspan="2">STATUS DATKU</th>
+            <tr>
+                <td>Data zgłoszenia:</td>
+                <td>${donation.created}</td>
+            </tr>
+            <tr>
+                <td>Data przekazania:</td>
+                <td><c:out value="${donation.pickedUpDateTime}" default="Oczekuje na odbiór"/></td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${donation.status==0}">
+                            <b style="color: darkred">Nieodebrany</b>
+                        </c:when>
+                        <c:when test="${donation.status==1}">
+                            <b style="color: green">Odebrany</b>
+                        </c:when>
+                    </c:choose>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <c:if test="${donation.status==0}">
+        <div class="form-group form-group--buttons">
+            <a href='<c:url value="/app/donation/donated/${donation.id}"/>' class="btn">Oznacz jako odebrany</a>
         </div>
     </c:if>
-    <c:if test="${empty donationList}">
-    <div class="help--slides active">
-        <p>Twoja lista datków jest pusta</p>
+    <br>
+    <div class="form-group form-group--buttons">
+        <a href='<c:url value="/app/donation/my-list"/>' class="btn btn--without-border">Wróć</a>
+        <a href='<c:url value="/app/donation/edit/${donation.id}"/>' class="btn btn--without-border">Edytuj</a>
+        <a href='<c:url value="/app/donation/delete/${donation.id}"/>' class="btn btn--without-border">Usuń</a>
     </div>
-    </c:if>
 </section>
 <%--CONTENT-STOP--%>
 <%@include file="fragments/footer.jsp" %>

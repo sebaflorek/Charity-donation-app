@@ -8,6 +8,7 @@ import pl.coderslab.charity.mapper.DonationMapper;
 import pl.coderslab.charity.repository.DonationRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -39,6 +40,14 @@ public class DonationService {
 
     public void update(Donation donation) {
         donationRepository.save(donation);
+    }
+
+    public void setDonationReceivedStatus(long donationId, long userId) {
+        Donation donation = donationRepository.findById(donationId).orElse(null);
+        if (donation != null && donation.getUser().getId() == userId) {
+            donation.setStatus(1);
+            donation.setPickedUpDateTime(LocalDateTime.now());
+        }
     }
 
     public void deleteById(long id) {

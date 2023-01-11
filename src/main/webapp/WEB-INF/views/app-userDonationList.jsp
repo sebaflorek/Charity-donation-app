@@ -32,7 +32,7 @@
                     <th>Instytucja</th>
                     <th>Utworzono</th>
                     <th>Status</th>
-                    <th>Data odbioru</th>
+                    <th>Data przekazania</th>
                     <th>Akcje</th>
                 </tr>
                 </thead>
@@ -50,11 +50,11 @@
                         <td>${donation.created}</td>
                         <td>
                             <c:choose>
-                                <c:when test="${donation.status==1}">
-                                    Odebrane
-                                </c:when>
                                 <c:when test="${donation.status==0}">
-                                    Nieodebrane
+                                    <b style="color: darkred">Nieodebrany</b>
+                                </c:when>
+                                <c:when test="${donation.status==1}">
+                                    <b style="color: green">Odebrany</b>
                                 </c:when>
                             </c:choose>
                         </td>

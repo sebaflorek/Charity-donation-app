@@ -33,4 +33,8 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query("UPDATE Donation d SET d.user = :user WHERE d.user.id = :id")
     void updateDonationUser(@Param("id") Long id, @Param("user") User user);
 
+    @Modifying
+    @Query("UPDATE Donation d SET d.status = 1 WHERE d.id = :id")
+    void setDonationReceivedStatus(@Param("id") Long donationId);
+
 }

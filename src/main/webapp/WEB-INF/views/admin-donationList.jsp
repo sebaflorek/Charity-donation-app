@@ -78,7 +78,7 @@
                                         <td>${donation.quantity}</td>
                                         <td>${donation.institution.name}</td>
                                         <td>
-                                            <c:out value="${donation.user.username}" default="<deleted>"/>
+                                            <c:out value="${donation.user.username}" default="<unknown>"/>
                                         </td>
                                         <td>
                                             <c:choose>
