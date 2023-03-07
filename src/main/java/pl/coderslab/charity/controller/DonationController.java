@@ -93,4 +93,14 @@ public class DonationController {
         donationService.saveWithDto(donationCreateDto);
         return "app-donationFormConfirm";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editDonation(@PathVariable Long id) {
+        return "app-maintenance";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delDonation(@PathVariable Long id) {
+        return "app-maintenance";
+    }
 }

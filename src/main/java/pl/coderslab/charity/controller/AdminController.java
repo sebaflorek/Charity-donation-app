@@ -105,6 +105,21 @@ public class AdminController {
         return "admin-donationList";
     }
 
+    @GetMapping("/donation/details/{id}")
+    public String donationDetails(@PathVariable Long id) {
+        return "admin-maintenance";
+    }
+
+    @GetMapping("/donation/edit/{id}")
+    public String editDonation(@PathVariable Long id) {
+        return "admin-maintenance";
+    }
+
+    @GetMapping("/donation/delete/{id}")
+    public String delDonation(@PathVariable Long id) {
+        return "admin-maintenance";
+    }
+
     /* ================= USER MANAGEMENT ================= */
     @GetMapping("/user/list")
     public String getUserList(Model model) {
